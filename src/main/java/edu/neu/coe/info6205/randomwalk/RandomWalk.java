@@ -20,9 +20,8 @@ public class RandomWalk {
      * @param dy the distance he moves in the y direction
      */
     private void move(int dx, int dy) {
-        // FIXME do move by replacing the following code
-         throw new RuntimeException("Not implemented");
-        // END 
+        this.x = this.x + dx;
+        this.y = this.y + dy;
     }
 
     /**
@@ -31,8 +30,9 @@ public class RandomWalk {
      * @param m the number of steps the drunkard takes
      */
     private void randomWalk(int m) {
-        // FIXME
-        // END 
+        for (int i = 0; i < m; i++) {
+        	randomMove();
+        }
     }
 
     /**
@@ -51,9 +51,11 @@ public class RandomWalk {
      * @return the (Euclidean) distance from the origin to the current position.
      */
     public double distance() {
-        // FIXME by replacing the following code
-         return 0.0;
-        // END 
+        //Euclidean distance = sqrt (((x2 - x1)^2) + ((y2 - y1)^2))
+    	//assuming lamp post at (0,0)
+    	double euclideanDistance = Math.sqrt((Math.pow(x, 2)) + (Math.pow(y, 2)));
+    	System.out.printf("Current Position: (%d, %d) and Euclidean distance: %.1f%n", this.x, this.y, euclideanDistance);
+    	return euclideanDistance;
     }
 
     /**
@@ -66,6 +68,7 @@ public class RandomWalk {
     public static double randomWalkMulti(int m, int n) {
         double totalDistance = 0;
         for (int i = 0; i < n; i++) {
+        	System.out.println("m: " + m + ", Experiment: " + (i+1));
             RandomWalk walk = new RandomWalk();
             walk.randomWalk(m);
             totalDistance = totalDistance + walk.distance();
@@ -74,13 +77,14 @@ public class RandomWalk {
     }
 
     public static void main(String[] args) {
-        if (args.length == 0)
-            throw new RuntimeException("Syntax: RandomWalk steps [experiments]");
-        int m = Integer.parseInt(args[0]);
-        int n = 30;
-        if (args.length > 1) n = Integer.parseInt(args[1]);
-        double meanDistance = randomWalkMulti(m, n);
-        System.out.println(m + " steps: " + meanDistance + " over " + n + " experiments");
+        int m = 1;
+        int n = 10;
+        while (m <= 6) {
+        	double meanDistance = randomWalkMulti(m, n);
+            System.out.println(m + " steps: " + meanDistance + " over " + n + " experiments");
+            System.out.println("======================================");
+            m++;
+        }
     }
 
 }
