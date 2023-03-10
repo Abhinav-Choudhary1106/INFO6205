@@ -27,7 +27,7 @@ public class BaseHelper<X extends Comparable<X>> implements Helper<X> {
      * @return false
      */
     public boolean instrumented() {
-        return false;
+        return true;
     }
 
     /**
