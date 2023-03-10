@@ -247,7 +247,7 @@ public class QuickSortDualPivotTest {
         // NOTE this depends on the cutoff value for quick sort.
         int levels = k - 2;
         final Config config = Config.setupConfig("true", "0", "1", "", "");
-        final BaseHelper<Integer> helper = (BaseHelper<Integer>) HelperFactory.create("quick sort dual pivot", N, config);
+        final Helper<Integer> helper = HelperFactory.create("quick sort dual pivot", N, config);
         System.out.println(helper);
         Sort<Integer> s = new QuickSort_DualPivot<>(helper);
         s.init(N);
